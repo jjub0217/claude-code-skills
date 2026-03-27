@@ -6,6 +6,53 @@
 
 **전제 조건**: 이슈와 브랜치가 이미 생성되어 있어야 합니다. 없다면 `/create-issue` 명령어를 먼저 사용하세요.
 
+## 설정
+
+### 필수
+| 항목 | 설명 | 예시 |
+|------|------|------|
+| GitHub 레포 | `{owner}/{repo}` 형식 | `jjub0217/cuddle-market` |
+
+### 선택
+| 항목 | 설명 | 기본값 | 예시 |
+|------|------|--------|------|
+| base 브랜치 | PR의 base 브랜치 | `develop` | `develop` |
+| PR body 템플릿 (chore) | chore 타입 PR의 body 형식 | 아래 참조 | 프로젝트에 맞게 설정 |
+| PR body 템플릿 (fix/feat) | fix/feat 타입 PR의 body 형식 | 아래 참조 | 프로젝트에 맞게 설정 |
+| Co-Author | 커밋 Co-Author 정보 | 없음 | `Co-Authored-By: Name <email>` |
+
+**PR body 템플릿 (chore) 예시** (커들마켓 기준):
+```markdown
+## Summary
+- 변경 내용 요약
+
+## Changed Files
+- 변경된 파일 목록
+
+## Test plan
+- 테스트 방법
+
+Closes #이슈번호
+```
+
+**PR body 템플릿 (fix/feat) 예시** (커들마켓 기준):
+```markdown
+## 📌 개요
+- PR의 목적과 해결하려는 문제를 간단히 설명
+
+## 🔧 작업 내용
+- [ ] 구현/수정한 주요 기능 항목별 정리
+
+## 📎 관련 이슈
+Closes #이슈번호
+
+## 📸 스크린샷 (선택)
+(필요시 추가)
+
+## 💬 리뷰어 참고 사항
+- 리뷰어가 중점적으로 봐주었으면 하는 부분
+```
+
 ## 📌 컨벤션 참고
 - 커밋: `docs/conventions.md` (커밋 컨벤션)
 - **PR 템플릿**: `.github/PULL_REQUEST_TEMPLATE.md` (반드시 따를 것)
@@ -111,27 +158,12 @@ gh pr list --head 브랜치명 --state open
 - "PR을 생성하시겠습니까?"
 
 PR 생성 (PR 템플릿 형식 준수):
+
+**PR body는 작업 타입에 따라 {설정의 PR body 템플릿}을 사용합니다.**
+
 ```bash
-gh pr create --base develop --title "타입: 제목(#이슈번호)" --body "$(cat <<'EOF'
-## 📌 개요
-
-- PR의 목적과 해결하려는 문제를 간단히 설명
-
-## 🔧 작업 내용
-
-- [ ] 구현/수정한 주요 기능 항목별 정리
-
-## 📎 관련 이슈
-
-Closes #이슈번호
-
-## 📸 스크린샷 (선택)
-
-(필요시 추가)
-
-## 💬 리뷰어 참고 사항
-
-- 리뷰어가 중점적으로 봐주었으면 하는 부분
+gh pr create --base {설정의 base 브랜치} --title "타입: 제목(#이슈번호)" --body "$(cat <<'EOF'
+{설정의 PR body 템플릿에 따라 작성}
 EOF
 )"
 ```
@@ -177,7 +209,7 @@ PR: [PR URL]
 - `--no-verify` 플래그 사용 금지 (사용자 명시 요청 시만)
 - force push 절대 금지
 - main/master에 직접 커밋 금지
-- **PR의 base 브랜치는 반드시 `develop`** — stacked PR(다른 feature 브랜치를 base로 지정) 절대 금지
+- **PR의 base 브랜치는 반드시 `{설정의 base 브랜치}`** — stacked PR(다른 feature 브랜치를 base로 지정) 절대 금지
 - **이 커맨드를 거치지 않고 임의로 브랜치 생성, PR 생성 금지** — 일괄 작업이라도 반드시 이 워크플로우를 따를 것
 
 ---

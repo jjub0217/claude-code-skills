@@ -4,12 +4,39 @@
 
 **중요**: 이 명령어는 이슈 생성과 브랜치 생성까지만 수행합니다. 작업 완료 후 `/commit-push` 명령어를 사용하세요.
 
+## 설정
+
+### 필수
+| 항목 | 설명 | 예시 |
+|------|------|------|
+| GitHub 레포 | `{owner}/{repo}` 형식 | `jjub0217/cuddle-market` |
+
+### 선택
+| 항목 | 설명 | 기본값 | 예시 |
+|------|------|--------|------|
+| base 브랜치 | 새 브랜치를 생성할 기준 브랜치 | `develop` | `develop` |
+| 브랜치 네이밍 형식 | 브랜치명 패턴 | `종류/이슈번호--이름` | `feature/123--login-ui` |
+| 라벨 매핑 | 이슈 타입 → GitHub 라벨 매핑 | 아래 표 참조 | 프로젝트에 맞게 설정 |
+| 이슈 템플릿 경로 | 이슈 템플릿 디렉토리 | `.github/ISSUE_TEMPLATE/` | `.github/ISSUE_TEMPLATE/` |
+
+**라벨 매핑 예시** (커들마켓 기준):
+
+| 이슈 타입 | GitHub 라벨 |
+|-----------|------------|
+| feature | FEAT |
+| fix | FIX |
+| refactor | REFECTOR |
+| docs | DOCS |
+| chore | CHORE |
+
+**이슈 템플릿 예시** (커들마켓 기준):
+- `feature_request.md` - 기능 구현
+- `refactor-issue.md` - 리팩토링
+- `docs-issue.md` - 문서 작업
+
 ## 📌 컨벤션 참고
 - 브랜치: `docs/conventions.md` (브랜치 컨벤션)
-- 이슈 템플릿: `.github/ISSUE_TEMPLATE/`
-  - `feature_request.md` - 기능 구현
-  - `refactor-issue.md` - 리팩토링
-  - `docs-issue.md` - 문서 작업
+- 이슈 템플릿: `{설정의 이슈 템플릿 경로}`
 
 ---
 
@@ -86,30 +113,25 @@ EOF
 )" --label "라벨"
 ```
 
-**라벨 매핑**:
-- feature → FEAT
-- refactor → REFECTOR
-- docs → DOCS
-- fix → FIX
-- chore → CHORE
+**라벨 매핑**: 설정의 라벨 매핑을 참조합니다.
 
 이슈 번호 저장 (예: #123)
 
 ### Step 5: 브랜치 생성
 
-**중요**: 모든 새 브랜치는 반드시 **develop 브랜치에서** 생성합니다.
+**중요**: 모든 새 브랜치는 반드시 **{설정의 base 브랜치}에서** 생성합니다.
 
-**브랜치 컨벤션**: `종류/이슈번호--브랜치이름` (전부 소문자)
+**브랜치 컨벤션**: `{설정의 브랜치 네이밍 형식}` (전부 소문자)
 
 사용자에게 브랜치 이름 확인:
 - "브랜치 이름: `타입/이슈번호--제안된이름`"
 - 제안된 이름은 작업 내용 기반으로 자동 생성
 - 예: `feature/123--login-ui`
 
-develop 브랜치로 이동 및 최신화 후 브랜치 생성:
+{설정의 base 브랜치}로 이동 및 최신화 후 브랜치 생성:
 ```bash
-git checkout develop
-git pull origin develop
+git checkout {base 브랜치}
+git pull origin {base 브랜치}
 git checkout -b 브랜치명
 ```
 
@@ -139,7 +161,7 @@ git checkout -b 브랜치명
 
 ### 금지 사항
 - main/master에 직접 브랜치 생성 금지
-- develop에서만 새 브랜치 생성
+- {설정의 base 브랜치}에서만 새 브랜치 생성
 
 ---
 
@@ -150,7 +172,7 @@ git checkout -b 브랜치명
 2. **이슈 타입 확인** (feature/refactor/docs)
 3. **이슈 내용 작성** (템플릿 기반)
 4. **GitHub 이슈 생성** (gh issue create)
-5. **브랜치 생성** (develop에서 타입/번호--이름)
+5. **브랜치 생성** ({base 브랜치}에서 {브랜치 네이밍 형식})
 6. **완료 안내**
 
 ### 👤 사용자가 직접 수행
