@@ -2,6 +2,59 @@
 
 Claude Code에서 사용하는 개발 생산성 스킬 모음입니다.
 
+## 사전 요구사항
+
+### 필수
+
+| 도구 | 설명 | 설치 방법 |
+|------|------|-----------|
+| [Claude Code](https://claude.ai/download) | Anthropic의 CLI 기반 AI 코딩 도구. 이 스킬들이 동작하는 환경 | `npm install -g @anthropic-ai/claude-code` |
+| [GitHub CLI](https://cli.github.com/) | 이슈/PR 자동화에 사용 (bug-fix, create-issue, commit-push 등) | `brew install gh` (macOS) / [설치 가이드](https://github.com/cli/cli#installation) |
+| Git | 버전 관리 | 대부분의 OS에 기본 설치됨 |
+
+### 선택
+
+| 도구 | 설명 | 필요한 스킬 |
+|------|------|-------------|
+| [Notion MCP](https://github.com/anthropics/claude-code-notion) | Notion 연동 (QA 티켓, Daily Scrum 등) | bug-fix, context-sync, daily-scrum, refactor-scan |
+| Node.js 18+ | Claude Code 실행에 필요 | 전체 |
+
+### 환경 확인
+
+```bash
+# Claude Code 설치 확인
+claude --version
+
+# GitHub CLI 설치 및 로그인 확인
+gh --version
+gh auth status
+
+# Git 확인
+git --version
+```
+
+### Claude Code 스킬 구조
+
+Claude Code는 프로젝트의 `.claude/skills/` 폴더에서 스킬을 인식합니다.
+
+```
+your-project/
+  .claude/
+    skills/
+      bug-fix/
+        SKILL.md    ← Claude Code가 이 파일을 읽고 실행
+      learn-log/
+        SKILL.md
+      ...
+```
+
+스킬은 `/스킬명` 형식으로 실행합니다:
+```
+> /bug-fix
+> /learn-log
+> /commit-push
+```
+
 ## Quick Start
 
 ```bash
