@@ -5,6 +5,10 @@ description: 세션 종료 시 작업 정리, 문서 업데이트, 학습 기록
 
 # my-session-wrap
 
+## 설정
+
+별도 설정 없이 사용 가능. 현재 프로젝트의 git 상태를 기반으로 동작한다.
+
 ## Execution Flow
 
 ```
