@@ -2,38 +2,62 @@
 
 Claude Code에서 사용하는 개발 생산성 스킬 모음입니다.
 
+## Quick Start
+
+```bash
+# 1. 레포 클론
+git clone https://github.com/jjub0217/claude-code-skills.git
+
+# 2. 원하는 스킬을 프로젝트에 심볼릭 링크 (또는 복사)
+ln -s /path/to/claude-code-skills/skills/bug-fix /your-project/.claude/skills/bug-fix
+
+# 3. 스킬의 SKILL.md에서 설정 섹션을 프로젝트에 맞게 수정 후 사용
+#    예: GitHub 레포, base 브랜치, Notion DB ID 등
+```
+
 ## 스킬 목록
 
 ### 학습/성장
 
-| 스킬 | 설명 |
-|------|------|
-| [learn-log](skills/learn-log) | 세션 히스토리를 분석하여 Q&A, 인사이트, 의사결정을 주간 학습 로그에 자동 기록 |
-| [blog-write](skills/blog-write) | 학습 로그의 블로그 후보를 기반으로 기술 블로그 초안 작성 |
-| [study-roadmap](skills/study-roadmap) | 채용공고 + 이력서 → 갭 분석 → 맞춤 공부 로드맵 자동 생성 |
+| 스킬 | 설명 | 설정 필요 | Notion |
+|------|------|-----------|--------|
+| [learn-log](skills/learn-log) | 세션 히스토리를 분석하여 Q&A, 인사이트, 의사결정을 주간 학습 로그에 자동 기록 | 선택 | 불필요 |
+| [blog-write](skills/blog-write) | 학습 로그의 블로그 후보를 기반으로 기술 블로그 초안 작성 | 선택 | 불필요 |
+| [study-roadmap](skills/study-roadmap) | 채용공고 + 이력서 → 갭 분석 → 맞춤 공부 로드맵 자동 생성 | 선택 | 불필요 |
 
 ### 개발 워크플로우
 
-| 스킬 | 설명 |
-|------|------|
-| [bug-fix](skills/bug-fix) | 버그 수정 자동화 — QA 티켓 생성 → GitHub 이슈 → worktree에서 수정 → PR 생성 |
-| [create-issue](skills/create-issue) | GitHub 이슈 생성 + 브랜치 생성 자동화 |
-| [commit-push](skills/commit-push) | 커밋 → 푸시 → PR 생성 자동화 |
-| [refactor-scan](skills/refactor-scan) | React Best Practice 기반 코드 리팩토링 자동화 |
+| 스킬 | 설명 | 설정 필요 | Notion |
+|------|------|-----------|--------|
+| [bug-fix](skills/bug-fix) | 버그 수정 자동화 — QA 티켓 생성 → GitHub 이슈 → worktree에서 수정 → PR 생성 | **필수** | 선택 |
+| [create-issue](skills/create-issue) | GitHub 이슈 생성 + 브랜치 생성 자동화 | **필수** | 불필요 |
+| [commit-push](skills/commit-push) | 커밋 → 푸시 → PR 생성 자동화 | **필수** | 불필요 |
+| [refactor-scan](skills/refactor-scan) | Best Practice 규칙 기반 코드 리팩토링 자동화 | **필수** | 선택 |
 
 ### 프로젝트 관리
 
-| 스킬 | 설명 |
-|------|------|
-| [context-sync](skills/context-sync) | Notion + GitHub에서 정보 수집 → 싱크 문서 + Daily Scrum 생성 |
-| [daily-scrum](skills/daily-scrum) | GitHub 커밋 기반 Daily Scrum 페이지 자동 생성 |
+| 스킬 | 설명 | 설정 필요 | Notion |
+|------|------|-----------|--------|
+| [context-sync](skills/context-sync) | Notion + GitHub에서 정보 수집 → 싱크 문서 + Daily Scrum 생성 | **필수** | 선택 |
+| [daily-scrum](skills/daily-scrum) | GitHub 커밋 기반 Daily Scrum 페이지 자동 생성 | **필수** | 선택 |
 
 ### 유틸리티
 
-| 스킬 | 설명 |
-|------|------|
-| [my-session-wrap](skills/my-session-wrap) | 세션 종료 시 작업 정리, 문서 업데이트, 학습 기록 |
-| [my-trouble-detect](skills/my-trouble-detect) | 에러/삽질 발생 시 컨텍스트 자동 수집 및 분석 |
+| 스킬 | 설명 | 설정 필요 | Notion |
+|------|------|-----------|--------|
+| [my-session-wrap](skills/my-session-wrap) | 세션 종료 시 작업 정리, 문서 업데이트, 학습 기록 | 없음 | 불필요 |
+| [my-trouble-detect](skills/my-trouble-detect) | 에러/삽질 발생 시 컨텍스트 자동 수집 및 분석 | 선택 | 불필요 |
+
+### 설정 가이드 요약
+
+각 스킬의 `SKILL.md` 상단에 설정 테이블이 있습니다.
+
+| 설정 유형 | 해당 스킬 | 설정 내용 |
+|-----------|----------|-----------|
+| GitHub 레포 (필수) | bug-fix, create-issue, commit-push, context-sync, daily-scrum, refactor-scan | `{owner}/{repo}` 형식 |
+| base 브랜치 (필수/선택) | bug-fix, create-issue, commit-push, daily-scrum, refactor-scan | 기본값 `develop` |
+| Notion DB ID (선택) | bug-fix, context-sync, daily-scrum, refactor-scan | Notion 연동 시 필요 |
+| 파일 경로 (선택) | learn-log, blog-write, study-roadmap, my-trouble-detect | 출력 경로 커스터마이징 |
 
 ## 설치 방법
 
@@ -57,15 +81,13 @@ cp -r skills/bug-fix /your-project/.claude/skills/
 
 ## 커스터마이징
 
-일부 스킬은 프로젝트별 설정이 필요합니다.
+스킬 설치 후 `SKILL.md`의 설정 섹션을 프로젝트에 맞게 수정하세요.
 
-- **bug-fix**: Notion DB ID 또는 로컬 QA 문서 경로
-- **context-sync**: Notion DB ID, GitHub 레포명
-- **daily-scrum**: Notion DB ID 또는 로컬 scrum 문서 경로
-- **create-issue**: 브랜치 네이밍 컨벤션, 이슈 템플릿
-- **commit-push**: PR 템플릿, base 브랜치
+- **필수 설정**: GitHub 레포, base 브랜치 등 스킬 동작에 필수인 항목
+- **선택 설정 (Notion)**: Notion DB ID, 사용자 ID 등. 미설정 시 로컬 마크다운으로 대체
+- **선택 설정 (경로)**: 파일 출력 경로 등. 기본값이 제공됨
 
-각 스킬의 `SKILL.md` 내 주석을 참고하여 프로젝트에 맞게 수정하세요.
+각 스킬 폴더의 `README.md`에서 설정 요약을 확인할 수 있습니다.
 
 ## 기술 스택
 
