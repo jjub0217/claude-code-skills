@@ -373,6 +373,6 @@ base 브랜치: develop
 DAILY SCRUM DB: 30ff2b30-7961-817e-9601-d836505c5b04
 사용자 ID: 7c32774b-0096-4545-a9fe-7cfec90faa15
 사용자 이름: 강주현
-Notion API Token 경로: ~/Library/Caches/claude-cli-nodejs/-Users-osejin-Desktop-cuddle-market/mcp-logs-notion/*.txt
+Notion API Token 경로: ~/Library/Caches/claude-cli-nodejs/{프로젝트경로}/mcp-logs-notion/*.txt
 블로그 초안 경로: docs/blog-drafts/
 ```
