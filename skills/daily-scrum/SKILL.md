@@ -41,7 +41,7 @@
    > **중요**: MCP Notion 도구의 `API-post-page`는 `parent.page_id`만 지원하여 데이터베이스에 직접 페이지를 생성할 수 없습니다. 반드시 아래 curl 명령어를 사용하세요.
 
    > **API Token 확인 방법**: MCP 로그 파일에서 토큰 확인
-   > `cat ~/Library/Caches/claude-cli-nodejs/-Users-osejin-Desktop-cuddle-market/mcp-logs-notion/*.txt | grep "Authorization: Bearer" | head -1`
+   > `cat ~/Library/Caches/claude-cli-nodejs/{프로젝트경로}/mcp-logs-notion/*.txt | grep "Authorization: Bearer" | head -1`
 
    ```bash
    curl -X POST 'https://api.notion.com/v1/pages' \
