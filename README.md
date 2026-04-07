@@ -61,8 +61,9 @@ your-project/
 # 1. 레포 클론
 git clone https://github.com/jjub0217/claude-code-skills.git
 
-# 2. 원하는 스킬을 프로젝트에 심볼릭 링크 (또는 복사)
-ln -s /path/to/claude-code-skills/skills/bug-fix /your-project/.claude/skills/bug-fix
+# 2. 프로젝트에 전체 스킬 심볼릭 링크
+mkdir -p /your-project/.claude/skills
+ln -s /path/to/claude-code-skills/skills/* /your-project/.claude/skills/
 
 # 3. 스킬의 SKILL.md에서 설정 섹션을 프로젝트에 맞게 수정 후 사용
 #    예: GitHub 레포, base 브랜치, Notion DB ID 등
@@ -120,16 +121,18 @@ ln -s /path/to/claude-code-skills/skills/bug-fix /your-project/.claude/skills/bu
 # 레포 클론
 git clone https://github.com/jjub0217/claude-code-skills.git
 
-# 프로젝트의 .claude/skills/ 에 심볼릭 링크 생성
-ln -s /path/to/claude-code-skills/skills/learn-log /your-project/.claude/skills/learn-log
+# 프로젝트의 .claude/skills/ 에 전체 심볼릭 링크 생성
+mkdir -p /your-project/.claude/skills
+ln -s /path/to/claude-code-skills/skills/* /your-project/.claude/skills/
 ```
 
 ### 개별 설치
 
-원하는 스킬 폴더만 프로젝트의 `.claude/skills/`에 복사하면 됩니다.
+원하는 스킬만 골라서 심볼릭 링크하면 됩니다.
 
 ```bash
-cp -r skills/bug-fix /your-project/.claude/skills/
+mkdir -p /your-project/.claude/skills
+ln -s /path/to/claude-code-skills/skills/bug-fix /your-project/.claude/skills/bug-fix
 ```
 
 ## 커스터마이징
