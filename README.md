@@ -65,7 +65,10 @@ git clone https://github.com/jjub0217/claude-code-skills.git
 mkdir -p /your-project/.claude/skills
 ln -s /path/to/claude-code-skills/skills/* /your-project/.claude/skills/
 
-# 3. 스킬의 SKILL.md에서 설정 섹션을 프로젝트에 맞게 수정 후 사용
+# 3. Claude Code 세션을 재시작 (스킬은 세션 시작 시 로드됨)
+#    이미 실행 중인 세션에서는 새로 추가한 스킬이 인식되지 않습니다.
+
+# 4. 스킬의 SKILL.md에서 설정 섹션을 프로젝트에 맞게 수정 후 사용
 #    예: GitHub 레포, base 브랜치, Notion DB ID 등
 ```
 
